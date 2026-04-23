@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const schema = mongoose.schema;
 
-//Schema for donation
+//Schema for superMarket
 const superMarketSchema = new schema({
     name: {
         type: String,
@@ -41,3 +41,6 @@ const superMarketSchema = new schema({
 },
 { timestamps: true }
 )
+
+const SuperMarket = mongoose.model("SuperMarket",superMarketSchema);
+module.exports = SuperMarket;
