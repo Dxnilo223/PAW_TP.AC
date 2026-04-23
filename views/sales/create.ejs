@@ -1,0 +1,51 @@
+<%- include('../partials/head') %>
+<%- include('../partials/nav') %>
+
+<h1>Create Sale</h1>
+
+<form method="POST" action="/sales/create">
+
+  <!-- CUSTOMER -->
+  <label>Customer Email:</label><br>
+  <input type="email" name="customerEmail" required><br><br>
+
+  <h3>Products</h3>
+
+  <% if (products.length === 0) { %>
+    <p>No products available.</p>
+  <% } else { %>
+
+    <% products.forEach(product => { %>
+      <div style="margin-bottom: 10px;">
+
+        <!-- product info -->
+        <strong><%= product.name %></strong> 
+        (€<%= product.price %>)
+
+        <!-- hidden id -->
+        <input 
+          type="hidden" 
+          name="productIds" 
+          value="<%= product._id %>"
+        >
+
+        <!-- quantity -->
+        <input 
+          type="number" 
+          name="quantities" 
+          min="0" 
+          placeholder="Quantity"
+        >
+
+      </div>
+    <% }) %>
+
+  <% } %>
+
+  <br>
+
+  <button type="submit">Complete Sale</button>
+
+</form>
+
+<%- include('../partials/foot') %>
