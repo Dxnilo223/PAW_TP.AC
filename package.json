@@ -2,8 +2,22 @@
   "name": "paw-tp.ac",
   "version": "0.0.0",
   "private": true,
+  "description": "",
+  "homepage": "https://github.com/Dxnilo223/PAW_TP.AC#readme",
+  "bugs": {
+    "url": "https://github.com/Dxnilo223/PAW_TP.AC/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dxnilo223/PAW_TP.AC.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "app.js",
   "scripts": {
-    "devStart": "nodemon server.js"
+    "start": "node app.js",
+    "devStart": "nodemon app.js"
   },
   "dependencies": {
     "body-parser": "^2.2.2",
@@ -14,6 +28,7 @@
     "express-session": "^1.19.0",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
+    "mongoose": "^9.5.0",
     "morgan": "~1.9.1"
   },
   "devDependencies": {

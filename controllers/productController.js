@@ -3,51 +3,51 @@ const Product = require("../models/Product");
 
 let productController = {};
 
-/* LISTAR PRODUTOS */
+/* LIST ProductS */
 productController.list = (req, res) => {
   const search = req.query.search || "";
 
   Product.find({
-    nome: { $regex: search, $options: "i" }
+    name: { $regex: search, $options: "i" }
   })
     .sort({ createdAt: -1 })
     .exec()
     .then((products) => {
       res.render("products/list", {
-        title: "Lista de Produtos",
+        title: "Products list",
         products,
       });
     })
     .catch((err) => {
-      console.log("Erro: ", err);
-      res.status(500).send("Erro ao carregar produtos");
+      console.log("Error: ", err);
+      res.status(500).send("Error loading Products");
     });
 };
 
-/* FORM CRIAR PRODUTO */
+/* FORM Create Product */
 productController.create = (req, res) => {
   res.render("products/create", {
-    title: "Criar Produto",
+    title: "Create Product",
   });
 };
 
-/* GUARDAR PRODUTO */
+/* SAVE Product */
 productController.save = (req, res) => {
-  const { nome, descricao, categoria, preco, stock, imagem } = req.body;
+  const { name, description, category, price, stock, image } = req.body;
 
   const product = new Product({
-    nome,
-    descricao,
-    categoria,
-    preco,
+    name,
+    description,
+    category,
+    price,
     stock,
-    imagem: imagem || "default.jpg"
+    image: image || "default.jpg"
   });
 
   product
     .save()
     .then(() => {
-      console.log("Produto criado com sucesso");
+      console.log("Product created successfully");
       res.redirect("/products");
     })
     .catch((err) => {
@@ -62,43 +62,43 @@ productController.view = (req, res) => {
     .exec()
     .then((product) => {
       res.render("products/view", {
-        title: "Detalhes do Produto",
+        title: "Product details",
         product,
       });
     })
     .catch((err) => {
-      console.log("Erro: ", err);
-      res.status(500).send("Erro interno");
+      console.log("Error: ", err);
+      res.status(500).send("Internal error");
     });
 };
 
-/* FORM EDITAR */
+/* FORM EDIT */
 productController.edit = (req, res) => {
   Product.findById(req.params.id)
     .exec()
     .then((product) => {
       res.render("products/edit", {
-        title: "Editar Produto",
+        title: "Edit Product",
         product,
       });
     })
     .catch((err) => {
-      console.log("Erro: ", err);
+      console.log("Error: ", err);
     });
 };
 
-/* ATUALIZAR PRODUTO */
+/* UPDATE Product */
 productController.update = (req, res) => {
   Product.findByIdAndUpdate(
     req.params.id,
     {
       $set: {
-        nome: req.body.nome,
-        descricao: req.body.descricao,
-        categoria: req.body.categoria,
-        preco: req.body.preco,
+        name: req.body.name,
+        description: req.body.description,
+        category: req.body.category,
+        price: req.body.price,
         stock: req.body.stock,
-        imagem: req.body.image
+        image: req.body.image
       },
     },
     { new: true }
@@ -107,18 +107,18 @@ productController.update = (req, res) => {
       res.redirect("/products");
     })
     .catch((err) => {
-      console.log("Erro: ", err);
+      console.log("Error: ", err);
     });
 };
 
-/* APAGAR PRODUTO */
+/* DELETE Product */
 productController.delete = (req, res) => {
   Product.findByIdAndDelete(req.params.id)
     .then(() => {
       res.redirect("/products");
     })
     .catch((err) => {
-      console.log(err);
+      console.log("Error: ", err);
     });
 };
 

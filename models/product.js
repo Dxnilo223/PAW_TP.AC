@@ -2,17 +2,17 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
-    nome: {
+    name: {
         type: String,
         required: true
     },
-    descricao: {
+    description: {
         type: String
     },
-    categoria: {
+    category: {
         type: String
     },
-    preco: {
+    price: {
         type: Number,
         required: true
     },
@@ -20,7 +20,7 @@ const productSchema = new Schema({
         type: Number,
         default: 0
     },
-    imagem: {
+    image: {
         type: String,
         required: true
       },
