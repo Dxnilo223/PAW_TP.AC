@@ -20,6 +20,7 @@
     "devStart": "nodemon app.js"
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "body-parser": "^2.2.2",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -29,7 +30,9 @@
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "mongoose": "^9.5.0",
-    "morgan": "~1.9.1"
+    "mongose": "^0.0.2-security",
+    "morgan": "~1.9.1",
+    "validator": "^13.15.35"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
