@@ -1,8 +1,9 @@
 var mongoose = require("mongoose");
-var Supermarket = require("../models/supermarket")
+var Supermarket = require("../models/supermarket");
 
 let supermarketController = {};
 
+<<<<<<< HEAD
 //Supermarket List
 supermarketController.list = (req, res) => {
 const search = req.query.search || "";
@@ -34,6 +35,22 @@ supermarketController.create = (req, res) => {
 
 // SAVE
 supermarketController.save =  (req, res) => {
+=======
+// LIST
+supermarketController.list = async (req, res) => {
+  const supermarkets = await Supermarket.find().populate('owner');
+  res.render('supermarkets/list', { supermarkets });
+};
+
+// CREATE (form)
+supermarketController.create = (req, res) => {
+  res.render('supermarkets/create', { error: null });
+};
+
+// SAVE (POST)
+supermarketController.save = async (req, res) => {
+  try {
+>>>>>>> 9c15454553c974ac8da38ec75a3c0acef97fef3b
     const { name, description, location, schedule, method, cost } = req.body;
 
     const supermarket = new Supermarket({
@@ -41,6 +58,7 @@ supermarketController.save =  (req, res) => {
       description,
       location,
       schedule,
+      owner: req.session.user._id,   // <-- ADICIONADO
       deliveryMethods: [
         {
           method,
@@ -49,6 +67,7 @@ supermarketController.save =  (req, res) => {
       ]
     });
 
+<<<<<<< HEAD
     supermarket
       .save()
       .then(() => {
@@ -60,15 +79,43 @@ supermarketController.save =  (req, res) => {
         res.redirect("/products/create");
       });
  
+=======
+    await supermarket.save();
+
+    res.redirect('/supermarkets');
+
+  } catch (err) {
+    console.log(err);
+    res.render('supermarkets/create', { error: err.message });
+  }
+>>>>>>> 9c15454553c974ac8da38ec75a3c0acef97fef3b
 };
 
-// APPROVE (admin action)
+// APPROVE
 supermarketController.approve = async (req, res) => {
-  await Supermarket.findByIdAndUpdate(req.params.id, {
-    approved: true
-  });
-
+  await Supermarket.findByIdAndUpdate(req.params.id, { approved: true });
   res.redirect('/supermarkets');
+};
+
+// MIDDLEWARE getById
+supermarketController.getById = async (req, res, next, id) => {
+  try {
+    const supermarket = await Supermarket.findById(id);
+    if (!supermarket) return res.status(404).send("Supermarket not found");
+    req.supermarket = supermarket;
+    next();
+  } catch (err) {
+    next(err);
+  }
+};
+
+// DETAIL PAGE
+supermarketController.getOne = (req, res) => {
+  if (req.supermarket) {
+    res.render('supermarkets/detail', { supermarket: req.supermarket });
+  } else {
+    res.status(404).send("Supermarket not found");
+  }
 };
 
 module.exports = supermarketController;
