@@ -1,8 +1,7 @@
 var mongoose = require("mongoose");
 var Supermarket = require("../../models/supermarket")
 
-var supermarketController = {};
-const Supermarket = require('../models/supermakerket');
+let supermarketController = {};
 
 exports.list = async (req, res) => {
   const supermarkets = await Supermarket.find().populate('owner');
@@ -57,4 +56,4 @@ supermarketController.getById = async function (req, res, next, id) {
 }
 
 
-module.exports = supermarketController;
+module.exports = superMController;

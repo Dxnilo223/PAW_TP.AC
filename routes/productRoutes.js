@@ -1,13 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const ctrl = require('../controllers/productController');
-const { isAuthenticated } = require('../middleWares/authenticationMW');
+const productController = require('../controllers/productController');
 
-router.get('/', isAuthenticated, ctrl.list);
-router.get('/create', isAuthenticated, ctrl.getCreate);
-router.post('/create', isAuthenticated, ctrl.postCreate);
-router.get('/edit/:id', isAuthenticated, ctrl.getEdit);
-router.post('/edit/:id', isAuthenticated, ctrl.postEdit);
-router.post('/delete/:id', isAuthenticated, ctrl.delete);
+// LIST
+router.get('/', productController.list);
+
+// CREATE
+router.get('/create', productController.create);
+router.post('/create', productController.save);
+
+// EDIT 
+router.get('/edit/:id', productController.edit);
+router.post('/update/:id', productController.update);
+
+// DELETE
+router.get('/delete/:id', productController.delete);
+
+// VIEW 
+router.get('/:id', productController.view);
 
 module.exports = router;

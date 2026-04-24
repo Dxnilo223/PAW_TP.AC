@@ -1,33 +1,11 @@
-var express = require("express");
-const saleController = require("../controllers/sale");
-const {
-  requireAuth /* , requireAdmin */,
-} = require("../middleWares/authenticationMW");
-var router = express.Router();
-//status
-router.get("/status", requireAuth, saleController.status_list);
-router.get("/status/create", requireAuth, saleController.status_create);
-router.post("/status/save", requireAuth, saleController.status_save);
-router.get("/status/:id", requireAuth, saleController.status_edit);
-router.delete("/status/:id", requireAuth, saleController.status_delete);
-router.post("/status/:id", requireAuth, saleController.status_update);
-router.put("/status/:id", requireAuth, saleController.status_put);
-router.get("/status/:id/check", requireAuth, saleController.check_status);
+const express = require('express');
+const router = express.Router();
+const salesController = require('../controllers/salesController');
 
-//sale
-router.get("/", requireAuth, saleController.list);
+// GET → mostrar página de criação de venda
+router.get('/create', salesController.create);
 
-//router.post("/", requireAuth, saleController.list_filter);
-
-router.get("/create", requireAuth, saleController.create);
-
-router.post("/save", requireAuth, saleController.save);
-
-router.get("/:id", requireAuth, saleController.view);
-
-//router.get("/edit/:id", requireAuth, saleController.edit);
-
-router.post("/update/:id", requireAuth, saleController.update);
-router.post("/:id/upload-proof", requireAuth, saleController.upload_image);
+// POST → guardar venda
+router.post('/create', salesController.save);
 
 module.exports = router;

@@ -1,6 +1,7 @@
-extends layout
+<%- include('partials/head') %>
+<%- include('partials/nav') %>
 
-block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+<h1>404 - Oops!</h1>
+<h3>Page not found!</h3>
+
+<%- include('partials/foot') %>
