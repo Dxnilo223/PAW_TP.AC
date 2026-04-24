@@ -23,10 +23,10 @@ const productSchema = new Schema({
     image: {
         type: String,
         required: true
-      },
-}, 
+    },
+},
 {
     timestamps: true
 });
 
-module.exports = mongoose.models.Product || mongoose.model('Product', productSchema);
+module.exports = mongoose.model('Product', productSchema);

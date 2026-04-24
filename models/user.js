@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
+
 const userSchema = new mongoose.Schema({
     username:{
         type: String,
@@ -19,8 +20,10 @@ password: {
 phone: { type: String },
 address:  { type: String },
 role:     { type: String,
-    enum: ['client', 'supermarket', 'courier', 'admin'], default: 'client' }
-},{ timestamps: true });
+    enum: ['client', 'supermarket', 'courier', 'admin'],
+    default: 'client'
+    }
+}, { timestamps: true });
 
 /* Hash password */
 userSchema.pre('save', async function(next) {
