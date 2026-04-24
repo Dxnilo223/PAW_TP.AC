@@ -28,11 +28,14 @@ productController.list = (req, res) => {
 productController.create = (req, res) => {
   res.render("products/create", {
     title: "Create Product",
+    supermarkets
   });
 };
 
 /* SAVE Product */
 productController.save = (req, res) => {
+  supermarket: req.body.supermarket
+  
   const { name, description, category, price, stock, image } = req.body;
 
   const product = new Product({

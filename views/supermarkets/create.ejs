@@ -4,14 +4,18 @@
 <div class="container mt-4">
   <h1>Create Supermarket</h1>
 
-  <form method="POST" action="/supermarkets/create" >
+  <form action="/supermarkets/create" method="POST">
 
-    <input type="text" name="name" placeholder="Name" required class="form-control mb-2">
+    <label>Name:</label><br>
+    <input type="text" name="name" required><br><br>
 
-    <input type="text" name="description" placeholder="Description" class="form-control mb-2">
+    <label>Description:</label><br>
+    <input type="text" name="description"><br><br>
 
+    <label>Location:</label><br>
     <input type="text" name="location" placeholder="Location" class="form-control mb-2">
 
+    <label>Schedule:</label><br>
     <input type="text" name="schedule" placeholder="Schedule" class="form-control mb-2">
 
     <h4>Delivery</h4>

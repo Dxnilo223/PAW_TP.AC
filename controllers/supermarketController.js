@@ -3,54 +3,26 @@ var Supermarket = require("../models/supermarket");
 
 let supermarketController = {};
 
-<<<<<<< HEAD
-//Supermarket List
-supermarketController.list = (req, res) => {
-const search = req.query.search || "";
+// LIST
+supermarketController.list = async (req, res) => {
+  const supermarkets = await Supermarket.find();
 
-  Supermarket.find({
-    name: { $regex: search, $options: "i" }
-  })
-    .sort({ createdAt: -1 })
-    .exec()
-    .then((Supermarkets) => {
-      res.render("supermarkets/list", {
-        title: "Supermarkets list",
-        supermarkets,
-      });
-    })
-    .catch((err) => {
-      console.log("Error: ", err);
-      res.status(500).send("Error loading Supermarkets");
-    });
+  res.render('supermarkets/list', {
+    title: 'Supermarkets',
+    supermarkets
+  });
 };
 
-
-//CREATE
+// CREATE FORM
 supermarketController.create = (req, res) => {
-  res.render("supermarkets/create", {
-    title: "Create Supermarket",
+  res.render('supermarkets/create', {
+    title: 'Create Supermarket'
   });
 };
 
 // SAVE
-supermarketController.save =  (req, res) => {
-=======
-// LIST
-supermarketController.list = async (req, res) => {
-  const supermarkets = await Supermarket.find().populate('owner');
-  res.render('supermarkets/list', { supermarkets });
-};
-
-// CREATE (form)
-supermarketController.create = (req, res) => {
-  res.render('supermarkets/create', { error: null });
-};
-
-// SAVE (POST)
 supermarketController.save = async (req, res) => {
   try {
->>>>>>> 9c15454553c974ac8da38ec75a3c0acef97fef3b
     const { name, description, location, schedule, method, cost } = req.body;
 
     const supermarket = new Supermarket({
@@ -58,7 +30,6 @@ supermarketController.save = async (req, res) => {
       description,
       location,
       schedule,
-      owner: req.session.user._id,   // <-- ADICIONADO
       deliveryMethods: [
         {
           method,
@@ -67,28 +38,14 @@ supermarketController.save = async (req, res) => {
       ]
     });
 
-<<<<<<< HEAD
-    supermarket
-      .save()
-      .then(() => {
-        console.log("Product created successfully");
-        res.redirect("/products");
-      })
-      .catch((err) => {
-        console.log(err);
-        res.redirect("/products/create");
-      });
- 
-=======
     await supermarket.save();
 
     res.redirect('/supermarkets');
 
   } catch (err) {
     console.log(err);
-    res.render('supermarkets/create', { error: err.message });
+    res.send("Error creating supermarket");
   }
->>>>>>> 9c15454553c974ac8da38ec75a3c0acef97fef3b
 };
 
 // APPROVE

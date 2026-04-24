@@ -3,6 +3,15 @@ const Sale = require("../models/sale");
 
 let salesController = {};
 
+salesController.list = async (req, res) => {
+  const sales = await Sale.find().populate('products.product');
+
+  res.render('sales/list', {
+    title: "Sales",
+    sales
+  });
+};
+
 salesController.create = (req, res) => {
     Product.find()
     .then((products) => {

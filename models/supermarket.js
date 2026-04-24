@@ -47,4 +47,4 @@ const SupermarketSchema = new Schema({
 { timestamps: true }
 )
 
-module.exports = mongoose.models.Supermarket || mongoose.model('Supermarket', SupermarketSchema);
+module.exports = mongoose.model('Supermarket', SupermarketSchema);

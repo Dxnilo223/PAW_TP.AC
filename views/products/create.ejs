@@ -24,6 +24,13 @@
     <label>Image:</label><br>
     <input type="text" name="image"><br><br>
 
+    <label>Supermarket:</label>
+    <select name="supermarket" required class="form-control">
+        <% supermarkets.forEach(s => { %>
+            <option value="<%= s._id %>"><%= s.name %></option>
+        <% }) %>
+    </select>
+
     <button type="submit">Save Product</button>
 
 </form>

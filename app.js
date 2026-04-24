@@ -5,12 +5,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 
+
 // routes
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/authenticationRoutes');
 var productRouter = require('./routes/productRoutes');
 var saleRouter = require('./routes/saleRoutes');
-var supermarketRouter = require('./routes/supermarketRoutes');
+const supermarketRouter = require('./routes/supermarketRoutes');
+var authenticationController = require('./routes/authenticationRoutes');
 
 var app = express();
 
@@ -69,3 +71,9 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
+
+const PORT = 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});

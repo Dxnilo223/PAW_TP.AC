@@ -9,4 +9,5 @@ router.post('/create', supermarketController.save);
 // approve
 router.get('/approve/:id', supermarketController.approve);
 
+router.get('/:id', supermarketController.getOne);
 module.exports = router;

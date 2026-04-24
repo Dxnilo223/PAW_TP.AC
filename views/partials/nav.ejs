@@ -30,7 +30,7 @@
 
         <!-- SUPERMARKETS -->
         <li class="nav-item">
-          <a class="nav-link" href="/supermarkets/list">Supermarkets</a>
+          <a class="nav-link" href="/supermarkets">Supermarkets</a>
         </li>
 
         <li class="nav-item">
@@ -41,7 +41,34 @@
       </ul>
 
       <!-- RIGHT SIDE (AUTH) -->
-     
+       <ul class="navbar-nav">
+
+      <% if (user) { %>
+
+        <li class="nav-item">
+          <span class="nav-link text-light">
+             <%= user.email %>
+          </span>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/auth/logout">Logout</a>
+        </li>
+
+      <% } else { %>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/auth/login">Login</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/auth/register">Register</a>
+        </li> 
+
+      <% } %>
+
+    </ul>
+        
 
     </div>
   </div>

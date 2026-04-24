@@ -1,0 +1,15 @@
+<h1>Sales</h1>
+
+<table>
+  <tr>
+    <th>Customer</th>
+    <th>Total</th>
+  </tr>
+
+  <% sales.forEach(s => { %>
+    <tr>
+      <td><%= s.customerEmail %></td>
+      <td><%= s.total %>€</td>
+    </tr>
+  <% }) %>
+</table>

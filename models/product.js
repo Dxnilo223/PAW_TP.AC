@@ -24,7 +24,11 @@ const productSchema = new Schema({
         type: String,
         required: true
     },
-},
+    supermarket: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Supermarket'
+        },
+    },
 {
     timestamps: true
 });
