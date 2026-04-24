@@ -1,20 +1,21 @@
 const User = require('../models/user');
 
-exports.getRegister = (req, res) => res.render('auth/register', { error: null });
+exports.getRegister = (req, res) => res.render('authentication/register', { error: null, title: 'Register' });
 
 exports.postRegister = async (req, res) => {
   try {
     const { username, email, password, phone, address, role } = req.body;
     const exists = await User.findOne({ email });
-    if (exists) return res.render('auth/register', { error: 'Email já registado' });
+    if (exists) return res.render('auth/register', { error: 'Email is registred' });
     await User.create({ username, email, password, phone, address, role: role || 'client' });
     res.redirect('/auth/login');
   } catch (err) {
+    console.log(err);
     res.render('auth/register', { error: 'Error while registring' });
   }
 };
 
-exports.getLogin = (req, res) => res.render('auth/login', { error: null });
+exports.getLogin    = (req, res) => res.render('authentication/login',    { error: null, title: 'Login' });
 
 exports.postLogin = async (req, res) => {
   try {

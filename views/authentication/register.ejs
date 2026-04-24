@@ -48,7 +48,7 @@
         body: JSON.stringify({
           username,
           email,
-          password: pass  // controller expects 'password', not 'pass'
+          password: pass
         }),
         headers: {
           'Content-Type': 'application/json'
@@ -65,7 +65,7 @@
       .then(data => {
         if (!data) return;
         if (data.error) {
-          // Controller sends { error: 'Email jรก registado' } or { error: 'Error while registring' }
+          // Controller sends { error: 'Email registred' } or { error: 'Error while registring' }
           eErr.textContent = data.error;
         }
       })
