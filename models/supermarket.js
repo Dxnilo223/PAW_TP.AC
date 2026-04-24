@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const schema = mongoose.schema;
 
-//Schema for superMarket
-const superMarketSchema = new schema({
+//Schema for Supermarket
+const SupermarketSchema = new schema({
     name: {
         type: String,
         unique: true,
@@ -38,9 +38,13 @@ const superMarketSchema = new schema({
         type:Number,
         default:0,
     },
+    approved: {
+    type: Boolean,
+    default: false
+  },
+
 },
 { timestamps: true }
 )
 
-const SuperMarket = mongoose.model("SuperMarket",superMarketSchema);
-module.exports = SuperMarket;
+module.exports = mongoose.model('Supermarket', supermarketSchema);

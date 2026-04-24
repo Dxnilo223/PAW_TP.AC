@@ -11,7 +11,7 @@ var indexRouter = require('./routes/index');
 var authRouter = require('./routes/authenticationRoutes');
 var productRouter = require('./routes/productRoutes');
 var saleRouter = require('./routes/saleRoutes');
-//var supermarketRouter = require('./routes/supermarketRoutes');
+var supermarketRouter = require('./routes/supermarketRoutes');
 
 //DB connection
 const mongoose = require('mongoose');
@@ -38,7 +38,7 @@ app.use('/', indexRouter);
 //app.use('/auth', authRouter);
 app.use('/products', productRouter);
 app.use('/sales', saleRouter);
-//app.use('/supermarkets', supermarketRouter);
+app.use('/supermarkets', supermarketRouter);
 
 app.use(session({
   secret: 'paw_secret_key',

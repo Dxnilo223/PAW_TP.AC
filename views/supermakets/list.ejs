@@ -1,0 +1,43 @@
+<%- include('../partials/head') %>
+<%- include('../partials/nav') %>
+
+<div class="container mt-4">
+
+  <h1>Supermarkets</h1>
+
+  <a href="/supermarkets/create" class="btn btn-primary mb-3">Add Supermarket</a>
+
+  <table class="table">
+    <tr>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+
+    <% supermarkets.forEach(s => { %>
+      <tr>
+        <td><%= s.name %></td>
+        <td><%= s.location %></td>
+
+        <td>
+          <% if (s.approved) { %>
+            Approved
+          <% } else { %>
+            Pending
+          <% } %>
+        </td>
+
+        <td>
+          <% if (!s.approved) { %>
+            <a href="/supermarkets/approve/<%= s._id %>">Approve</a>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+
+  </table>
+
+</div>
+
+<%- include('../partials/foot') %>
