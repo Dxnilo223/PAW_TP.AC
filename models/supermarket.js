@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-const schema = mongoose.schema;
+const Schema = mongoose.Schema;
 
 //Schema for Supermarket
-const SupermarketSchema = new schema({
+const SupermarketSchema = new Schema({
     name: {
         type: String,
         unique: true,
@@ -47,4 +47,4 @@ const SupermarketSchema = new schema({
 { timestamps: true }
 )
 
-module.exports = mongoose.model('Supermarket', supermarketSchema);
+module.exports = mongoose.models.Supermarket || mongoose.model('Supermarket', SupermarketSchema);

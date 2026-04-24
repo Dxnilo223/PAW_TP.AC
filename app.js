@@ -44,12 +44,15 @@ app.use((req, res, next) => {
   next();
 });
 
+<<<<<<< HEAD
 //routes
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/products', productRouter);
 app.use('/sales', saleRouter);
 app.use('/supermarkets', supermarketRouter);
+=======
+>>>>>>> 4ec8776214981d7da92ff3c4774d4b10ba6f596a
 
 // 404
 app.use(function(req, res, next) {

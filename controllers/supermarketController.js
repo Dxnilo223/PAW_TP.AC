@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-var Supermarket = require("../../models/supermarket")
+var Supermarket = require("../models/supermarket")
 
 let supermarketController = {};
 
@@ -7,6 +7,11 @@ let supermarketController = {};
 supermarketController.list = async (req, res) => {
   const supermarkets = await Supermarket.find().populate('owner');
   res.render('supermarkets/list', { supermarkets });
+};
+
+//CREATE
+supermarketController.create = (req, res) => {
+  res.render('supermarkets/create')
 };
 
 // SAVE
